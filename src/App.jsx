@@ -1,17 +1,20 @@
 import { useState } from 'react'
 import './App.css'
-import Inicial from './components/Inicial.jsx'
-import Jogo from './components/Jogo.jsx'
+import Inicial from './pages/Inicial.jsx'
+import Jogo from './pages/Jogo.jsx'
 
 function App() { 
-    const [pagina, setPagina] = useState('home');
+  const [tela, setTela] = useState('home'); // controla qual tela exibir
+
+  const iniciarJogo = () => setTela('jogo');
+  const voltarParaHome = () => setTela('home');
 
   return (
     <>
-      {pagina === 'home' && <Inicial iniciarJogo={() => setPagina('jogo')} />}
-      {pagina === 'jogo' && <Jogo />}
+      {tela === 'home' && <Inicial aoIniciar={iniciarJogo} />}
+      {tela === 'jogo' && <Jogo aoVoltar={voltarParaHome} />}
     </>
-  )
+  );
 }
 
 export default App
