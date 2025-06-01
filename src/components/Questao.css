@@ -1,0 +1,8 @@
+#questao {
+    position:absolute;
+    font-size: 30px; 
+    top: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+}

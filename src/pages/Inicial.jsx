@@ -8,8 +8,8 @@ function Inicial({ aoIniciar }){
     return(
         <>
         <div>
-            <Logo />
-            <h3 class="fraseEfeito">Head, shoulders, coins e frações, na Performance de Centavos, testamos mil funções!</h3>
+            <Logo tipo = {'inicial'}/>
+            <h3 class="fraseEfeito" style={{fontStyle: 'italic', fontSize: 'medium'}}>Head, shoulders, coins e frações, na Performance de Centavos, testamos mil funções!</h3>
             <Audio src = {"/src/assets/musica.mp3"} autoplay={true} />
         </div>
         <Jogar aoClicar={aoIniciar}/>

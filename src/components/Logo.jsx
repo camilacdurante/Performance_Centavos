@@ -1,8 +1,10 @@
+import './Logo.css'
 
-function Logo(){
+function Logo({tipo}){
+    const Tipo = tipo === 'inicial' ? 'inicial' : 'jogo';
     return(
         <>
-        <img class = "logo" src="/src/assets/logo.png"></img>
+        <img class = {Tipo} src="/src/assets/logo.png" ></img>
         </>
     )
 }
