@@ -1,8 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import Rodape from '../components/Rodape.jsx';
-import Audio2 from '../components/Audio.jsx';
 import Logo from '../components/Logo.jsx';
-import Instrucoes from '../components/Instrucoes.jsx';
 import Caixinha from '../components/Caixinha.jsx';
 import Questao from '../components/Questao.jsx';
 
