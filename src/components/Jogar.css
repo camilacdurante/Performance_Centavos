@@ -1,0 +1,21 @@
+button{
+    border-color: #360b3a;
+    border-radius: 50px;
+    background-color: #861581;
+    color: #FDD94F;
+    font-size: 12px;
+    height: 30px;
+    width: 70px;
+    margin-top: 15px;
+    cursor: pointer;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*Define a coloração da fonte da escrita interna do botão, a coloração da borda e a coloração do botão para quando o mouse é passado por cima*/
+button:hover{
+    border-color: #29082c;
+    background-color: #3B0B3F;
+    color: #a18b33;
+}
