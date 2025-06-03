@@ -1,5 +1,6 @@
 import './Caixinha.css'
 
+// Componente Caixinha que exibe as respostas
 function Caixinha({position, children}){
     return(
         <>

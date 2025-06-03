@@ -1,5 +1,6 @@
 import './Questao.css'
 
+// Componente Questao
 function Questao({children}){
     return(
         <>

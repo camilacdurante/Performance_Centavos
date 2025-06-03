@@ -1,19 +1,21 @@
 import { useState, useRef, useEffect } from 'react';
 
-const Audio = ({ src, autoplay}) => { /** Componente que realiza a execução do audio */ 
+// Componente de áudio que reproduz um som quando chamado
+const Audio = ({ src, autoplay}) => {
   const audioRef = useRef(null);
-  useEffect(() => { /** Efeito que garante que o audio seja reproduzido automaticamente */
+  // Garante que o áudio seja reproduzido automaticamente
+  useEffect(() => {
     const tocar = async () => {
       try {
         audioRef.current.muted = false;
         await audioRef.current.play();
       } catch (err) {
-        console.log('Autoplay bloqueado'); /** Caso o audio não seja reproduzido automaticamente, ele é mutado */
+        console.log('Autoplay bloqueado');
       }
     };
-    tocar(); /** Chama a função que reproduz o audio */
+    // Toca o áudio
+    tocar();
   }, []);
-
 
     return(
         <>

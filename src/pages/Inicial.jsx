@@ -4,6 +4,8 @@ import Logo from '../components/Logo.jsx'
 import Instrucoes from '../components/Instrucoes.jsx'
 import Jogar from '../components/Jogar.jsx'
 
+
+// Página Inicial
 function Inicial({ aoIniciar }){
     return(
         <>

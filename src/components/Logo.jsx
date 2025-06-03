@@ -1,5 +1,6 @@
 import './Logo.css'
 
+// Componente Logotipo
 function Logo({tipo}){
     const Tipo = tipo === 'inicial' ? 'inicial' : 'jogo';
     return(

@@ -1,5 +1,6 @@
 import './Instrucoes.css'
 
+// Componente Instruções
 function Instrucoes(){
     return(
         <>

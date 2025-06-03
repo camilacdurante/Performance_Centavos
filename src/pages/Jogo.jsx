@@ -4,7 +4,9 @@ import Logo from "../components/Logo.jsx";
 import Caixinha from "../components/Caixinha.jsx";
 import Questao from "../components/Questao.jsx";
 
+// Página do Jogo
 function Jogo({ aoVoltar }) {
+  // Estados para armazenar a pergunta, respostas, posição correta, status do jogo, mensagem e acertos
   const posicoes = ["up", "down", "left", "right"];
   const [pergunta, setPergunta] = useState("");
   const [respostas, setRespostas] = useState({});
@@ -15,6 +17,7 @@ function Jogo({ aoVoltar }) {
   const [microfoneAtivo, setMicrofoneAtivo] = useState(false);
   const reconhecedorRef = useRef(null);
 
+  // Função para buscar uma nova pergunta do backend
   async function buscarPergunta() {
     try {
       const res = await fetch("http://localhost:8000/gerar_pergunta");
@@ -31,12 +34,13 @@ function Jogo({ aoVoltar }) {
     }
   }
 
+  // Função para validar a resposta falada no backend
   async function validarRespostaNoBack(comandoFalado) {
     try {
       const res = await fetch("http://localhost:8000/validar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ comando: comandoFalado, posicaoCorreta }),
+        body: JSON.stringify({ comando: comandoFalado }),
       });
       const data = await res.json();
       return data.acertou;
@@ -45,7 +49,7 @@ function Jogo({ aoVoltar }) {
       return false;
     }
   }
-
+  // Função para iniciar o reconhecimento de voz
   const iniciarReconhecimento = async () => {
     if (!window.speechCommands) {
       alert("speechCommands não está disponível. Verifique os scripts no index.html.");
@@ -58,6 +62,7 @@ function Jogo({ aoVoltar }) {
     reconhecedorRef.current = recognizer;
   };
 
+  // Função para ativar o microfone e iniciar o reconhecimento de voz
   const ativarMicrofone = async () => {
     setStatus("Escutando...");
     setMicrofoneAtivo(true);
@@ -73,9 +78,11 @@ function Jogo({ aoVoltar }) {
         const topIndex = scores.indexOf(Math.max(...scores));
         const comando = labels[topIndex];
 
+        // Verifica se o comando falado está entre as posições válidas
         if (posicoes.includes(comando)) {
           setStatus(`Você disse: ${comando}`);
 
+          // Valida no back se a resposta está correta
           const acertou = await validarRespostaNoBack(comando);
 
           if (acertou) {
@@ -102,6 +109,7 @@ function Jogo({ aoVoltar }) {
     );
   };
 
+  // Efeito para buscar a pergunta inicial e configurar o reconhecedor de voz
   useEffect(() => {
     buscarPergunta();
 
@@ -121,44 +129,33 @@ function Jogo({ aoVoltar }) {
       <Caixinha position="left">{respostas.left}</Caixinha>
       <Caixinha position="right">{respostas.right}</Caixinha>
 
-      <p
-        style={{
+      <p style={{
           position: "absolute",
           top: "240px",
           fontSize: "18px",
           left: "50%",
           transform: "translateX(-50%)",
-        }}
-      >
-        {status}
-      </p>
+        }}>{status}</p>
 
-      <div
-        style={{
-          position: "absolute",
-          top: "290px",
-          left: "50%",
-          transform: "translateX(-50%)",
-          height: "180px",
-          width: "250px",
-        }}
-      >
-        {mensagem}
+      <div style={{
+            position: "absolute",
+            top: "290px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            height: "180px",
+            width: "250px",
+        }}>{mensagem}
       </div>
-      <p
-        style={{
+      <p style={{
           position: "absolute",
           top: "430px",
           left: "50%",
           transform: "translateX(-50%)",
           fontSize: "16px",
           fontWeight: "bold",
-        }}>
-        Acertos: {acertos}
-      </p>
-      <button
-        onClick={ativarMicrofone}
-        disabled={microfoneAtivo}
+        }}>Acertos: {acertos}</p>
+
+      <button onClick={ativarMicrofone} disabled={microfoneAtivo}
         style={{
           position: "absolute",
           top: "450px",
@@ -173,10 +170,7 @@ function Jogo({ aoVoltar }) {
           color: "#FDD94F",
           fontWeight: "bold",
           cursor: microfoneAtivo ? "progress" : "pointer",
-        }}
-      >
-        Ativar Microfone
-      </button>
+        }}>Ativar Microfone</button>
 
       <Rodape />
     </div>

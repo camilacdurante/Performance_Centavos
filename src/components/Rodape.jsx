@@ -1,4 +1,6 @@
 import './Rodape.css'
+
+// Componente Rodapé
 function Rodape(){
     return(
         <>
