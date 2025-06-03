@@ -6,11 +6,10 @@ import Questao from "../components/Questao.jsx";
 
 // Página do Jogo
 function Jogo({ aoVoltar }) {
-  // Estados para armazenar a pergunta, respostas, posição correta, status do jogo, mensagem e acertos
+  // Estados para armazenar a pergunta, respostas, status do jogo, mensagem e acertos
   const posicoes = ["up", "down", "left", "right"];
   const [pergunta, setPergunta] = useState("");
   const [respostas, setRespostas] = useState({});
-  const [posicaoCorreta, setPosicaoCorreta] = useState("");
   const [status, setStatus] = useState("Clique no botão para começar");
   const [mensagem, setMensagem] = useState("");
   const [acertos, setAcertos] = useState(0);
@@ -24,7 +23,6 @@ function Jogo({ aoVoltar }) {
       const data = await res.json();
       setPergunta(data.pergunta);
       setRespostas(data.respostas);
-      setPosicaoCorreta(data.posicaoCorreta);
       setAcertos(data.acertos);
       setMensagem("");
       setStatus("Clique no botão para começar");
